@@ -1,11 +1,8 @@
 from measurement.serializers import DetailedSerializer, MeasurementSerializer, UpdateSerializer, SensorSerializer
 from .models import Sensor, Measurements
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
-from rest_framework.response import Response
-from rest_framework import status
 
-# TODO: опишите необходимые обработчики, рекомендуется использовать generics APIView классы:
-# TODO: ListCreateAPIView, RetrieveUpdateAPIView, CreateAPIView
+
 class MeasurementsCreateViewSet(ListCreateAPIView):
     queryset = Measurements.objects.all()
     serializer_class = MeasurementSerializer
@@ -14,8 +11,6 @@ class MeasurementsCreateViewSet(ListCreateAPIView):
         serializer = MeasurementSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
 class SensorListCreateViewSet(ListCreateAPIView):
@@ -26,8 +21,6 @@ class SensorListCreateViewSet(ListCreateAPIView):
         serializer = DetailedSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
 class SensorDetailedViewSet(RetrieveUpdateAPIView):

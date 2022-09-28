@@ -1,14 +1,12 @@
-from dataclasses import fields
-from pyexpat import model
 from rest_framework import serializers
 
 from measurement.models import Measurements, Sensor
 
-# TODO: опишите необходимые сериализаторы
+
 class MeasurementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Measurements
-        fields = ['sensor', 'temperature', 'created_at']
+        fields = ['sensor', 'temperature', 'created_at', 'images']
 
 class SensorSerializer(serializers.ModelSerializer):
     class Meta:
